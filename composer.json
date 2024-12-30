@@ -1,5 +1,5 @@
 {
-    "name": "liuch/dmarc-srg",
+    "name": "castles77/dmarc-srg",
     "type": "project",
     "description": "A php parser, viewer and summary report generator for incoming DMARC reports.",
     "keywords": [ "mailserver", "dmarc", "dmarc-reports", "dmarc-parser" ],
