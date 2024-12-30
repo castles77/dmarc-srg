@@ -4,11 +4,11 @@ $debug = 0;
 
 // Settings for assessing the database in which reports will be saved
 $database = [
-    'host' => env('DMARC_DB_HOST'),
+    'host' => getenv('DMARC_DB_HOST'),
     'type' => 'mysql',
-    'name' => env('DMARC_DB_DATABASE'),
-    'user' => env('DMARC_DB_USERNAME'),
-    'password' => env('DMARC_DB_PASSWORD'),
+    'name' => getenv('DMARC_DB_DATABASE'),
+    'user' => getenv('DMARC_DB_USERNAME'),
+    'password' => getenv('DMARC_DB_PASSWORD'),
     /**
      * This parameter can be useful if the database is shared with other applications
      * to avoid conflicting table names. You do not need to specify this parameter
@@ -19,7 +19,7 @@ $database = [
      * Caution! Do not change this parameter if you have already created the tables in the database
      * because the tables will not be renamed automatically.
      */
-    'table_prefix' => ''
+    'table_prefix' => 'dmarc_'
 ];
 
 /**
@@ -29,9 +29,9 @@ $database = [
  */
 $mailboxes = [
     // Just for displaying in the web-admin and utilities. Not necessary.
-    'name'            => env('DMARC_ADMIN_NAME'),
+    'name'            => getenv('DMARC_ADMIN_NAME'),
     // Host of the email server. You can specify a port separated by a colon.
-    'host'            => env('DMARC_DOMAIN'),
+    'host'            => getenv('DMARC_DOMAIN'),
     // Connection encryption method. The valid values are:
     // 'none'     - without encryption (strongly not recommend).
     // 'ssl'      - SSL/TLS on a separate port, for IMAP it is usually port 993. Default value.
@@ -40,9 +40,9 @@ $mailboxes = [
     // Set true if you want to connect to the IMAP server without certificate validation
     'novalidate-cert' => false,
     // Mailbox user name.
-    'username'        => env('DMARC_USERNAME'),
+    'username'        => getenv('DMARC_USERNAME'),
     // Mailbox password.
-    'password'        => env('DMARC_PASSWORD'),
+    'password'        => getenv('DMARC_PASSWORD'),
     // Mailbox name
     'mailbox'         => 'INBOX',
     // IMAP authentication methods to be excluded.
