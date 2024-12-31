@@ -239,7 +239,7 @@ $mailer = [
      * TCP port to connect to.
      * Typically it is 465 for SSL/TLS, 587 for STARTTLS, or 25.
      */
-    //'port' => 465,
+    'port' => 465,
 
     /**
      * Connection encryption method. The valid values are:
