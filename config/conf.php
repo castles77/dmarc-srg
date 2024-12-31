@@ -4,11 +4,11 @@ $debug = 0;
 
 // Settings for assessing the database in which reports will be saved
 $database = [
-    'host' => getenv('DMARC_DB_HOST'),
+    'host' => getenv('RDS_HOSTNAME'),
     'type' => 'mysql',
-    'name' => getenv('DMARC_DB_DATABASE'),
-    'user' => getenv('DMARC_DB_USERNAME'),
-    'password' => getenv('DMARC_DB_PASSWORD'),
+    'name' => getenv('RDS_DB_NAME'),
+    'user' => getenv('RDS_USERNAME'),
+    'password' => getenv('RDS_PASSWORD'),
     /**
      * This parameter can be useful if the database is shared with other applications
      * to avoid conflicting table names. You do not need to specify this parameter
@@ -31,7 +31,7 @@ $mailboxes = [
     // Just for displaying in the web-admin and utilities. Not necessary.
     'name'            => getenv('DMARC_ADMIN_NAME'),
     // Host of the email server. You can specify a port separated by a colon.
-    'host'            => getenv('DMARC_DOMAIN'),
+    'host'            => getenv('DMARC_IMAP_HOST'),
     // Connection encryption method. The valid values are:
     // 'none'     - without encryption (strongly not recommend).
     // 'ssl'      - SSL/TLS on a separate port, for IMAP it is usually port 993. Default value.
@@ -207,24 +207,24 @@ $mailer = [
      * 'internal'  - use the PHP internal functions. Default value.
      * 'phpmailer' - use the PHPMailer library. You can install it with composer.
      */
-    'library' => 'internal',
+    'library' => 'phpmailer',
 
     /**
      * The method used to send email. Note: The 'smtp' method requires the PHPMailer library. Make sure it is installed.
      * 'mail' - use the standard PHP mail() function. Default value.
      * 'smtp' - sent via SMTP. This method required the PHPMailer library. See below for required parameters.
      */
-    'method' => 'mail',
+    'method' => 'smtp',
 
     /**
      * Sender's e-mail address
      */
-    'from'    => 'postmaster@yourdomain.net',
+    'from'    => getenv('DMARC_USERNAME'),
 
     /**
      * Recepient's default e-mail address
      */
-    'default' => 'user@yourdomain.net',
+    'default' => getenv('DMARC_REPORT_TO'),
 
     /*
      * For method 'smtp' the following parameters must be specified:
@@ -233,7 +233,7 @@ $mailer = [
     /**
      * SMTP host to connect to.
      */
-    //'host' => 'mailhost.net',
+    'host' => getenv('DMARC_STMP_HOST'),
 
     /**
      * TCP port to connect to.
@@ -247,7 +247,7 @@ $mailer = [
      * 'ssl'      - SSL/TLS on a separate port, for SMTP it is usually port 465. Default value.
      * 'starttls' - STARTTLS method, usually on the standard SMTP port 587.
      */
-    //'encryption' => 'ssl',
+    'encryption' => 'ssl',
 
     /**
      * Set true if you want to connect to the SMTP server without certificate validation
@@ -257,12 +257,12 @@ $mailer = [
     /**
      * User name. Specify an empty string if authentication is not required.
      */
-    //'username' => 'someusername',
+    'username' => getenv('DMARC_USERNAME'),
 
     /**
      * User password. Specify an empty string if authentication is not required.
      */
-    //'password'  => 'somepasword'
+    'password'  => getenv('DMARC_PASSWORD')
 ];
 
 //

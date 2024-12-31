@@ -388,6 +388,8 @@ class MailBox
             throw new SoftException('The mailbox may not have any children mailboxes');
         }
 
+        return; // mailbox does not support imap_getacl
+
         if (!function_exists('imap_getacl')) {
             return;
         }

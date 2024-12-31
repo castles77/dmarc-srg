@@ -1,5 +1,7 @@
 <?php
 
+use Dotenv\Dotenv;
+
 /**
  * dmarc-srg - A php parser, viewer and summary report generator for incoming DMARC reports.
  * Copyright (C) 2020 Aleksey Andreev (liuch)
@@ -40,6 +42,9 @@ spl_autoload_register(function ($class) {
 });
 
 date_default_timezone_set('GMT');
+
+$dotenv = Dotenv::createUnsafeImmutable(__DIR__ . '/../../');
+$dotenv->safeLoad();
 
 $core = new Liuch\DmarcSrg\Core([
     'auth'     => [ 'Liuch\DmarcSrg\Auth' ],
